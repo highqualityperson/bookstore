@@ -4,6 +4,7 @@ function createNode(element) {
 
 var data = "https://api.myjson.com/bins/zyv02";
 var lang = "en";
+window.onload = fetch_data(data);
 
 function change_language(obj) {
   if (obj.className === "lang_en") {
@@ -24,8 +25,6 @@ function fetch_data(data) {
     .then(onDataFetched)
     .catch(onDataFetchFailed);
 }
-
-window.onload = fetch_data(data);
 
 function onDataFetched(response) {
   response
@@ -59,11 +58,10 @@ function changeText(books, keys_array) {
       "ontouchstart",
       'this.classList.toggle("hover");'
     );
-    // title
     flipContainer.setAttribute("data-title", books[i][keys_array[2]]);
 
-    var flip = document.createElement("div");
-    flip.classList.add("flip");
+    var flipper = document.createElement("div");
+    flipper.classList.add("flipper");
     var front = document.createElement("div");
     front.classList.add("front");
     var back = document.createElement("ul");
@@ -96,9 +94,9 @@ function changeText(books, keys_array) {
     back.append(description);
     back.append(button);
 
-    flip.appendChild(front);
-    flip.appendChild(back);
-    flipContainer.appendChild(flip);
+    flipper.appendChild(front);
+    flipper.appendChild(back);
+    flipContainer.appendChild(flipper);
     document.getElementById("allbooks").appendChild(flipContainer);
   }
 }
@@ -111,7 +109,7 @@ searchBar.addEventListener("keyup", function(e) {
       '[data-title="' + book[keys_array[2]] + '"]'
     );
     console.log(bookInHTML);
-    if (book.title.toLowerCase().indexOf(term) != -1) {
+    if (book[keys_array[2]].toLowerCase().indexOf(term) != -1) {
       bookInHTML.style.display = "block";
     } else {
       bookInHTML.style.display = "none";
