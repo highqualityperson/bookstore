@@ -4,6 +4,7 @@ function createNode(element) {
 
 var data = "https://api.myjson.com/bins/zyv02";
 var lang = "en";
+window.onload = fetch_data(data);
 
 function change_language(obj) {
   if (obj.className === "lang_en") {
@@ -25,8 +26,6 @@ function fetch_data(data) {
     .catch(onDataFetchFailed);
 }
 
-window.onload = fetch_data(data);
-
 function onDataFetched(response) {
   response
     .json()
@@ -42,23 +41,24 @@ function onConversionToJsonSuccessful(json) {
   console.log("got books.", json);
   data = json;
   books = data.books;
-  changeText(books);
+  keys_array = Object.keys(books[0]);
+  changeText(books, keys_array);
 }
 
 function onConversionToJsonFailed(error) {
   console.log("wrong file, dude!", error);
 }
 
-function changeText(books) {
+function changeText(books, keys_array) {
   for (var i = 0; i < books.length; i++) {
-    var fliperContainer = document.createElement("div");
-
-    fliperContainer.classList.add("flip-container");
-    fliperContainer.setAttribute(
+    //  flipContainer
+    var flipContainer = document.createElement("div");
+    flipContainer.classList.add("flip-container");
+    flipContainer.setAttribute(
       "ontouchstart",
       'this.classList.toggle("hover");'
     );
-    fliperContainer.setAttribute("data-title", books[i].title);
+    flipContainer.setAttribute("data-title", books[i][keys_array[2]]);
 
     var flipper = document.createElement("div");
     flipper.classList.add("flipper");
@@ -69,17 +69,22 @@ function changeText(books) {
 
     var img = new Image();
     img.classList.add("images");
-    img.src = books[i].cover || books[i].portada;
 
+    // cover
+    img.src = books[i][keys_array[0]];
+
+    // title
     var title = document.createElement("p");
-    title.innerHTML = books[i].title || books[i].titulo;
+    title.innerHTML = books[i][keys_array[2]];
 
+    // description
     var description = document.createElement("p");
-    description.innerHTML = books[i].description || books[i].descripcion;
+    description.innerHTML = books[i][keys_array[3]];
     var button = document.createElement("button");
     var info = document.createTextNode("More Info");
 
-    button.setAttribute("href", books[i].detail || books[i].detalle);
+    //  detail
+    button.setAttribute("href", books[i][keys_array[1]]);
     button.setAttribute("data-fancybox", "gallery");
 
     button.appendChild(info);
@@ -91,8 +96,8 @@ function changeText(books) {
 
     flipper.appendChild(front);
     flipper.appendChild(back);
-    fliperContainer.appendChild(flipper);
-    document.getElementById("allbooks").appendChild(fliperContainer);
+    flipContainer.appendChild(flipper);
+    document.getElementById("allbooks").appendChild(flipContainer);
   }
 }
 
@@ -101,10 +106,10 @@ searchBar.addEventListener("keyup", function(e) {
   var term = e.target.value.toLowerCase();
   books.forEach(function(book) {
     var bookInHTML = document.querySelector(
-      '[data-title="' + book.title + '"]'
+      '[data-title="' + book[keys_array[2]] + '"]'
     );
     console.log(bookInHTML);
-    if (book.title.toLowerCase().indexOf(term) != -1) {
+    if (book[keys_array[2]].toLowerCase().indexOf(term) != -1) {
       bookInHTML.style.display = "block";
     } else {
       bookInHTML.style.display = "none";
