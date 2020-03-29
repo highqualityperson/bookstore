@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css"
+    />
+    <link rel="stylesheet" href="bookstore.css" />
+
+    <title>Book Store</title>
+
+    <div class="jumbotron">
+      <div class="row">
+        <div class="logo col-xl-3">
+          <img
+            id="bookstore_logo"
+            src="./bookstore_logo.png"
+            alt="no picture ;("
+          />
+        </div>
+        <div class="row">
+          <div class="title">
+            <h3 class="col-xl-10">
+              Official Bookcat Store
+            </h3>
+            <h6 class="col-xl-10">
+              Books for cats and non-cats
+            </h6>
+          </div>
+        </div>
+        <div class="options col-md-100">
+          <div class="col">
+            <form id="filterbox">
+              <input
+                type="text"
+                id="myInput"
+                placeholder="Search for books.."
+              />
+            </form>
+            <div class="language col-md-100">
+              <button class="lang_en" onclick="change_language(this)">
+                English
+              </button>
+              <button class="lang_es" onclick="change_language(this)">
+                Spanish
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+
+  <body>
+    <div id="allbooks" class="container"></div>
+    <ul class="flip-container" ontouchstart="this.classList.toggle('hover');">
+      <li class="flipper">
+        <div id="front"></div>
+        <div id="back">
+          <div id="title"></div>
+          <div id="description"></div>
+          <a data-fancybox="gallery"> </a>
+        </div>
+      </li>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./bookstore.js"></script>
+  </body>
+</html>
