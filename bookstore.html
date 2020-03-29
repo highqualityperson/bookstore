@@ -16,6 +16,7 @@
     />
     <link rel="stylesheet" href="bookstore.css" />
 
+    <!-- Banner  -->
     <title>Book Store</title>
 
     <div class="jumbotron">
@@ -37,6 +38,8 @@
             </h6>
           </div>
         </div>
+
+        <!-- Search field -->
         <div class="options col-md-100">
           <div class="col">
             <form id="filterbox">
@@ -46,6 +49,8 @@
                 placeholder="Search for books.."
               />
             </form>
+
+            <!-- English / Spanish switch -->
             <div class="language col-md-100">
               <button class="lang_en" onclick="change_language(this)">
                 English
@@ -60,6 +65,7 @@
     </div>
   </head>
 
+  <!-- book covers -->
   <body>
     <div id="allbooks" class="container"></div>
     <ul class="flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -73,6 +79,7 @@
       </li>
     </ul>
 
+    <!--  JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
