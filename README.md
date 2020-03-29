@@ -1,13 +1,14 @@
 # Bookstore
+
 ### For cats and non-cats
 
 ## Bookstore example
 
 Consists of three parts:
-  - bookstore.css
-  - bookstore.html
-  - bookstore.js
 
+- bookstore.css
+- bookstore.html
+- bookstore.js
 
 ## html page
 
@@ -17,7 +18,7 @@ switch the language on the 'back' side.
 
 The second part contains book covers.
 
-## css 
+## css
 
 The code contains the logic for the rotation
 of the covers.
