@@ -13,8 +13,7 @@ Consists of three parts:
 ## html page
 
 Divided in header part, which mainly consists of a banner.
-The banner itself contains a search bar and a buttons that
-switch the language on the 'back' side.
+The banner itself contains a search bar.
 
 The second part contains book covers.
 
