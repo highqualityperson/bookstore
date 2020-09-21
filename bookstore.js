@@ -2,28 +2,26 @@ function createNode(element) {
   return document.createElement(element);
 }
 
-var data = "https://api.myjson.com/bins/zyv02";
+var data = "data.json";
 var lang = "en";
 window.onload = fetch_data(data);
 
 function change_language(obj) {
   if (obj.className === "lang_en") {
     console.log("get books in English.");
-    data = "https://api.myjson.com/bins/zyv02";
+    data = "data.json";
     lang = "en";
     fetch_data(data);
   } else {
     console.log("get books in Spanish.");
-    data = "https://api.myjson.com/bins/1h3vb3";
+    data = "data.json";
     lang = "es";
     fetch_data(data);
   }
 }
 
 function fetch_data(data) {
-  fetch(data)
-    .then(onDataFetched)
-    .catch(onDataFetchFailed);
+  fetch(data).then(onDataFetched).catch(onDataFetchFailed);
 }
 
 function onDataFetched(response) {
@@ -40,7 +38,9 @@ function onDataFetchFailed(error) {
 function onConversionToJsonSuccessful(json) {
   console.log("got books.", json);
   data = json;
+  console.log(data);
   books = data.books;
+  console.log(books);
   keys_array = Object.keys(books[0]);
   changeText(books, keys_array);
 }
@@ -87,8 +87,6 @@ function changeText(books, keys_array) {
     button.setAttribute("href", books[i][keys_array[1]]);
     button.setAttribute("data-fancybox", "gallery");
 
-    button.appendChild(info);
-
     front.appendChild(img);
     back.append(title);
     back.append(description);
@@ -102,9 +100,9 @@ function changeText(books, keys_array) {
 }
 
 var searchBar = document.forms["filterbox"].querySelector("#myInput");
-searchBar.addEventListener("keyup", function(e) {
+searchBar.addEventListener("keyup", function (e) {
   var term = e.target.value.toLowerCase();
-  books.forEach(function(book) {
+  books.forEach(function (book) {
     var bookInHTML = document.querySelector(
       '[data-title="' + book[keys_array[2]] + '"]'
     );
